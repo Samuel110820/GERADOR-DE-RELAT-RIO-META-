@@ -36,3 +36,4 @@ footer{color:var(--mut);padding:30px;font-size:.85rem}
 
 .quote{padding:20px 28px 56px}.quote p{font-size:1.35rem;line-height:1.4;color:#d5dbec}.quote b{color:#fff}.quote span{display:block;margin-top:10px;color:var(--blue2);font-weight:700}
 .btn.btn-white{background:#fff;color:#0b0f1f;border-color:#fff;font-size:1.05rem}
+.crm-text{margin-top:34px;font-size:1.2rem;color:#d5dbec}.crm-text b{color:#fff}
