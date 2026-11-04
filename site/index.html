@@ -16,8 +16,8 @@
   <h1><span>CONSULTORIA</span><em>GRATUITA</em></h1>
   <p class="lead">Estratégias que transformam anúncios em <b>vendas</b>. Agende sua reunião com o <b>Samuel</b>.</p>
 
-  <!-- Troque a data-end para o fim da sua oferta (AAAA-MM-DDTHH:MM:SS-03:00) -->
-  <div class="count" id="count" data-end="2026-11-12T00:00:00-03:00">
+  <!-- Contagem contínua: cada visitante tem 7 dias a partir da 1ª visita e, ao zerar, reinicia. Mude DIAS abaixo no script. -->
+  <div class="count" id="count">
     <div><b id="d">00</b><span>DIAS</span></div>
     <div><b id="h">00</b><span>HORAS</span></div>
     <div><b id="m">00</b><span>MIN</span></div>
@@ -35,11 +35,18 @@
 <footer>© 2026 Samuel</footer>
 <script>
 (function(){
-  var end=new Date(document.getElementById('count').dataset.end).getTime();
+  var DIAS=7, KEY='contagem_fim', ms=DIAS*864e5, end=0;
+  try{end=+localStorage.getItem(KEY)||0}catch(e){}
+  if(end<=Date.now()){
+    end=Date.now()+ms;
+    try{localStorage.setItem(KEY,end)}catch(e){}
+  }
   var ids=['d','h','m','s'].map(function(i){return document.getElementById(i)});
   function p(n){return String(n).padStart(2,'0')}
   function tick(){
-    var t=Math.max(0,end-Date.now())/1000|0;
+    var t=end-Date.now();
+    if(t<=0){end=Date.now()+ms;try{localStorage.setItem(KEY,end)}catch(e){}t=ms}
+    t=t/1000|0;
     var v=[t/86400|0,t%86400/3600|0,t%3600/60|0,t%60];
     v.forEach(function(x,i){ids[i].textContent=p(x)});
   }
