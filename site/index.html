@@ -3,34 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Seu Nome | Comunidade</title>
-<meta name="description" content="Descrição curta da sua comunidade ou serviço.">
+<title>Samuel | Consultoria gratuita</title>
+<meta name="description" content="Resta uma vaga para consultoria gratuita com o Samuel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="hero">
-  <img class="avatar" src="img/foto.jpg" alt="Foto de Seu Nome" onerror="this.style.display='none'">
-  <h1>SEU NOME</h1>
-  <p class="tag">Seu título / o que você faz</p>
-  <p class="lead">Escreva aqui 2 a 3 linhas dizendo quem você ajuda e qual transformação entrega.</p>
-  <a class="btn primary" href="consultoria.html" target="_blank" rel="noopener">Entrar na comunidade</a>
-  <a class="btn" href="https://instagram.com/SEUUSUARIO" target="_blank" rel="noopener">Seguir no Instagram</a>
+  <div class="photo"><img src="img/foto.jpg" alt="Samuel" fetchpriority="high"></div>
+  <p class="eyebrow">RESTA APENAS 1 VAGA</p>
+  <h1><span>CONSULTORIA</span><em>GRATUITA</em></h1>
+  <p class="lead">Agende sua reunião com o <b>Samuel</b> e descubra como escalar seus resultados.</p>
+
+  <!-- Troque a data-end para o fim da sua oferta (AAAA-MM-DDTHH:MM:SS-03:00) -->
+  <div class="count" id="count" data-end="2026-11-12T00:00:00-03:00">
+    <div><b id="d">00</b><span>DIAS</span></div>
+    <div><b id="h">00</b><span>HORAS</span></div>
+    <div><b id="m">00</b><span>MIN</span></div>
+    <div><b id="s">00</b><span>SEG</span></div>
+  </div>
+
+  <a class="cta-ring" href="consultoria.html"><span class="cta">Quero minha vaga <i>↗</i></span></a>
+  <p class="note">Clique para garantir sua consultoria gratuita.</p>
 </header>
-
-<section class="stats">
-  <div><b>+000</b><span>membros</span></div>
-  <div><b>+0M</b><span>em resultados</span></div>
-  <div><b>0 anos</b><span>de experiência</span></div>
-</section>
-
-<section>
-  <h2>O que você vai encontrar</h2>
-  <ul class="cards">
-    <li><h3>Benefício 1</h3><p>Explique em uma frase.</p></li>
-    <li><h3>Benefício 2</h3><p>Explique em uma frase.</p></li>
-    <li><h3>Benefício 3</h3><p>Explique em uma frase.</p></li>
-  </ul>
-</section>
 
 <section>
   <h2>Resultados</h2>
@@ -50,11 +46,19 @@
   </div>
 </section>
 
-<section class="cta">
-  <h2>Pronto para começar?</h2>
-  <a class="btn primary" href="consultoria.html" target="_blank" rel="noopener">Falar no WhatsApp</a>
-</section>
-
-<footer>© 2026 Seu Nome</footer>
+<footer>© 2026 Samuel</footer>
+<script>
+(function(){
+  var end=new Date(document.getElementById('count').dataset.end).getTime();
+  var ids=['d','h','m','s'].map(function(i){return document.getElementById(i)});
+  function p(n){return String(n).padStart(2,'0')}
+  function tick(){
+    var t=Math.max(0,end-Date.now())/1000|0;
+    var v=[t/86400|0,t%86400/3600|0,t%3600/60|0,t%60];
+    v.forEach(function(x,i){ids[i].textContent=p(x)});
+  }
+  tick();setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>
